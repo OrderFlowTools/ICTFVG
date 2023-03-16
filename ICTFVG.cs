@@ -26,14 +26,14 @@ namespace NinjaTrader.NinjaScript.Indicators.Gemify
     // Supported period types for FVG detection
     public enum FVGPeriodTypes
     {
-        Tick,
-        Volume,
-        Second,
-        Minute,
-        Day,
-        Week,
-        Month,
-        Year
+        Tick = BarsPeriodType.Tick,
+        Volume = BarsPeriodType.Volume,
+        Second = BarsPeriodType.Second,
+        Minute = BarsPeriodType.Minute,
+        Day = BarsPeriodType.Day,
+        Week = BarsPeriodType.Week,
+        Month = BarsPeriodType.Month,
+        Year = BarsPeriodType.Year
     }
 
     [Gui.CategoryOrder("FVG Data Series", 1)]
@@ -95,7 +95,7 @@ namespace NinjaTrader.NinjaScript.Indicators.Gemify
             if (State == State.SetDefaults)
             {
                 Description = @"Fair Value Gap (ICT)";
-                Name = "ICTFVG v0.0.2.2";
+                Name = "\"ICTFVG v0.0.2.3\"";
                 Calculate = Calculate.OnBarClose;
                 IsOverlay = true;
                 DisplayInDataBox = true;
@@ -495,55 +495,55 @@ namespace NinjaTrader.NinjaScript.Indicators.Gemify
 
 namespace NinjaTrader.NinjaScript.Indicators
 {
-    public partial class Indicator : NinjaTrader.Gui.NinjaScript.IndicatorRenderBase
-    {
-        private Gemify.ICTFVG[] cacheICTFVG;
-        public Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            return ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
-        }
+	public partial class Indicator : NinjaTrader.Gui.NinjaScript.IndicatorRenderBase
+	{
+		private Gemify.ICTFVG[] cacheICTFVG;
+		public Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			return ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
+		}
 
-        public Gemify.ICTFVG ICTFVG(ISeries<double> input, bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            if (cacheICTFVG != null)
-                for (int idx = 0; idx < cacheICTFVG.Length; idx++)
-                    if (cacheICTFVG[idx] != null && cacheICTFVG[idx].UseFVGDataSeries == useFVGDataSeries && cacheICTFVG[idx].FVGBarsPeriodType == fVGBarsPeriodType && cacheICTFVG[idx].FVGSeriesPeriod == fVGSeriesPeriod && cacheICTFVG[idx].MaxBars == maxBars && cacheICTFVG[idx].UseATR == useATR && cacheICTFVG[idx].ATRPeriod == aTRPeriod && cacheICTFVG[idx].ImpulseFactor == impulseFactor && cacheICTFVG[idx].MinimumFVGSize == minimumFVGSize && cacheICTFVG[idx].FillType == fillType && cacheICTFVG[idx].HideFilledGaps == hideFilledGaps && cacheICTFVG[idx].DisplayCE == displayCE && cacheICTFVG[idx].DownBrush == downBrush && cacheICTFVG[idx].DownAreaBrush == downAreaBrush && cacheICTFVG[idx].UpBrush == upBrush && cacheICTFVG[idx].UpAreaBrush == upAreaBrush && cacheICTFVG[idx].ActiveAreaOpacity == activeAreaOpacity && cacheICTFVG[idx].FilledAreaOpacity == filledAreaOpacity && cacheICTFVG[idx].DrawLabel == drawLabel && cacheICTFVG[idx].LabelPosition == labelPosition && cacheICTFVG[idx].LabelFont == labelFont && cacheICTFVG[idx].LabelTextBrush == labelTextBrush && cacheICTFVG[idx].LabelBorderBrush == labelBorderBrush && cacheICTFVG[idx].LabelFillBrush == labelFillBrush && cacheICTFVG[idx].LabelFillOpacity == labelFillOpacity && cacheICTFVG[idx].EqualsInput(input))
-                        return cacheICTFVG[idx];
-            return CacheIndicator<Gemify.ICTFVG>(new Gemify.ICTFVG() { UseFVGDataSeries = useFVGDataSeries, FVGBarsPeriodType = fVGBarsPeriodType, FVGSeriesPeriod = fVGSeriesPeriod, MaxBars = maxBars, UseATR = useATR, ATRPeriod = aTRPeriod, ImpulseFactor = impulseFactor, MinimumFVGSize = minimumFVGSize, FillType = fillType, HideFilledGaps = hideFilledGaps, DisplayCE = displayCE, DownBrush = downBrush, DownAreaBrush = downAreaBrush, UpBrush = upBrush, UpAreaBrush = upAreaBrush, ActiveAreaOpacity = activeAreaOpacity, FilledAreaOpacity = filledAreaOpacity, DrawLabel = drawLabel, LabelPosition = labelPosition, LabelFont = labelFont, LabelTextBrush = labelTextBrush, LabelBorderBrush = labelBorderBrush, LabelFillBrush = labelFillBrush, LabelFillOpacity = labelFillOpacity }, input, ref cacheICTFVG);
-        }
-    }
+		public Gemify.ICTFVG ICTFVG(ISeries<double> input, bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			if (cacheICTFVG != null)
+				for (int idx = 0; idx < cacheICTFVG.Length; idx++)
+					if (cacheICTFVG[idx] != null && cacheICTFVG[idx].UseFVGDataSeries == useFVGDataSeries && cacheICTFVG[idx].FVGBarsPeriodType == fVGBarsPeriodType && cacheICTFVG[idx].FVGSeriesPeriod == fVGSeriesPeriod && cacheICTFVG[idx].MaxBars == maxBars && cacheICTFVG[idx].UseATR == useATR && cacheICTFVG[idx].ATRPeriod == aTRPeriod && cacheICTFVG[idx].ImpulseFactor == impulseFactor && cacheICTFVG[idx].MinimumFVGSize == minimumFVGSize && cacheICTFVG[idx].FillType == fillType && cacheICTFVG[idx].HideFilledGaps == hideFilledGaps && cacheICTFVG[idx].DisplayCE == displayCE && cacheICTFVG[idx].DownBrush == downBrush && cacheICTFVG[idx].DownAreaBrush == downAreaBrush && cacheICTFVG[idx].UpBrush == upBrush && cacheICTFVG[idx].UpAreaBrush == upAreaBrush && cacheICTFVG[idx].ActiveAreaOpacity == activeAreaOpacity && cacheICTFVG[idx].FilledAreaOpacity == filledAreaOpacity && cacheICTFVG[idx].DrawLabel == drawLabel && cacheICTFVG[idx].LabelPosition == labelPosition && cacheICTFVG[idx].LabelFont == labelFont && cacheICTFVG[idx].LabelTextBrush == labelTextBrush && cacheICTFVG[idx].LabelBorderBrush == labelBorderBrush && cacheICTFVG[idx].LabelFillBrush == labelFillBrush && cacheICTFVG[idx].LabelFillOpacity == labelFillOpacity && cacheICTFVG[idx].EqualsInput(input))
+						return cacheICTFVG[idx];
+			return CacheIndicator<Gemify.ICTFVG>(new Gemify.ICTFVG(){ UseFVGDataSeries = useFVGDataSeries, FVGBarsPeriodType = fVGBarsPeriodType, FVGSeriesPeriod = fVGSeriesPeriod, MaxBars = maxBars, UseATR = useATR, ATRPeriod = aTRPeriod, ImpulseFactor = impulseFactor, MinimumFVGSize = minimumFVGSize, FillType = fillType, HideFilledGaps = hideFilledGaps, DisplayCE = displayCE, DownBrush = downBrush, DownAreaBrush = downAreaBrush, UpBrush = upBrush, UpAreaBrush = upAreaBrush, ActiveAreaOpacity = activeAreaOpacity, FilledAreaOpacity = filledAreaOpacity, DrawLabel = drawLabel, LabelPosition = labelPosition, LabelFont = labelFont, LabelTextBrush = labelTextBrush, LabelBorderBrush = labelBorderBrush, LabelFillBrush = labelFillBrush, LabelFillOpacity = labelFillOpacity }, input, ref cacheICTFVG);
+		}
+	}
 }
 
 namespace NinjaTrader.NinjaScript.MarketAnalyzerColumns
 {
-    public partial class MarketAnalyzerColumn : MarketAnalyzerColumnBase
-    {
-        public Indicators.Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            return indicator.ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
-        }
+	public partial class MarketAnalyzerColumn : MarketAnalyzerColumnBase
+	{
+		public Indicators.Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			return indicator.ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
+		}
 
-        public Indicators.Gemify.ICTFVG ICTFVG(ISeries<double> input, bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            return indicator.ICTFVG(input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
-        }
-    }
+		public Indicators.Gemify.ICTFVG ICTFVG(ISeries<double> input , bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			return indicator.ICTFVG(input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
+		}
+	}
 }
 
 namespace NinjaTrader.NinjaScript.Strategies
 {
-    public partial class Strategy : NinjaTrader.Gui.NinjaScript.StrategyRenderBase
-    {
-        public Indicators.Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            return indicator.ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
-        }
+	public partial class Strategy : NinjaTrader.Gui.NinjaScript.StrategyRenderBase
+	{
+		public Indicators.Gemify.ICTFVG ICTFVG(bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			return indicator.ICTFVG(Input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
+		}
 
-        public Indicators.Gemify.ICTFVG ICTFVG(ISeries<double> input, bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
-        {
-            return indicator.ICTFVG(input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
-        }
-    }
+		public Indicators.Gemify.ICTFVG ICTFVG(ISeries<double> input , bool useFVGDataSeries, FVGPeriodTypes fVGBarsPeriodType, int fVGSeriesPeriod, int maxBars, bool useATR, int aTRPeriod, double impulseFactor, double minimumFVGSize, FVGFillType fillType, bool hideFilledGaps, bool displayCE, Brush downBrush, Brush downAreaBrush, Brush upBrush, Brush upAreaBrush, int activeAreaOpacity, int filledAreaOpacity, bool drawLabel, TextPosition labelPosition, SimpleFont labelFont, Brush labelTextBrush, Brush labelBorderBrush, Brush labelFillBrush, int labelFillOpacity)
+		{
+			return indicator.ICTFVG(input, useFVGDataSeries, fVGBarsPeriodType, fVGSeriesPeriod, maxBars, useATR, aTRPeriod, impulseFactor, minimumFVGSize, fillType, hideFilledGaps, displayCE, downBrush, downAreaBrush, upBrush, upAreaBrush, activeAreaOpacity, filledAreaOpacity, drawLabel, labelPosition, labelFont, labelTextBrush, labelBorderBrush, labelFillBrush, labelFillOpacity);
+		}
+	}
 }
 
 #endregion
